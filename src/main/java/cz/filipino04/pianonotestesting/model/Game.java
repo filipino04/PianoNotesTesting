@@ -1,5 +1,6 @@
 package cz.filipino04.pianonotestesting.model;
 import cz.filipino04.pianonotestesting.model.Constants;
+import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -15,7 +16,9 @@ public class Game {
 
     private String userAnswer;
 
-    private int lastUsedNoteIndex = 1000;
+    public ArrayList<Rectangle> whiteKeysArrayList;
+
+    public ArrayList<Rectangle> blackKeysArrayList;
 
     public boolean answerCheck(String userAnswer) {
         return (this.userAnswer.equals(this.correctAnswer));
