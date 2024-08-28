@@ -2,8 +2,8 @@ package cz.filipino04.pianonotestesting;
 
 import cz.filipino04.pianonotestesting.model.Game;
 import cz.filipino04.pianonotestesting.view.GameScene;
+import cz.filipino04.pianonotestesting.view.MainMenuScene;
 import javafx.application.Application;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -13,12 +13,12 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage){
         Game game = new Game();
-        GameScene gameScene = new GameScene(stage,2000,2800,game);
+        MainMenuScene mainMenuScene = new MainMenuScene(stage,200,200);
         stage.setTitle("Piano notes testing\n");
         stage.setResizable(false);
-        stage.setScene(gameScene);
+        stage.setScene(mainMenuScene);
         stage.show();
     }
 }
