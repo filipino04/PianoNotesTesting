@@ -10,7 +10,7 @@ public class Game {
     private Random random = new Random();
     private int playerScore;
 
-    private int livesRemaining = 3;
+    private int livesRemaining;
 
     private int maxScore;
 
@@ -34,6 +34,7 @@ public class Game {
             }
             return 1;
         }
+        setPlayerScore(getPlayerScore()+1);
         return 0;
     }
 

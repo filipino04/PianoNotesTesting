@@ -21,4 +21,15 @@ public class Constants {
             "gis", "as",
             "ais", "b"
     ));
+
+    public static final int HelpWidth = 1400;
+    public static final int HelpHeight = 700;
+
+    public static final int MenuWidth = 200;
+    public static final int MenuHeight = 200;
+
+    public static final int GameWidth = 2000;
+    public static final int GameHeight = 1400;
+
+    public static final int OverDim = 500;
 }

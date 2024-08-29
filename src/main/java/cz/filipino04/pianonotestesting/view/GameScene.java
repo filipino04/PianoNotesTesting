@@ -140,8 +140,9 @@ public class GameScene extends Scene {
         }
         else{
             game.setNewRecordFlag(game.getPlayerScore() > game.getMaxScore());
-            stage.setScene(new GameOverScene(stage,1000,1000,game));
+            stage.setScene(new GameOverScene(stage,Constants.OverDim,Constants.OverDim,game));
         }
+        renderHearts(game,canvas);
     }
     public void renderHearts (Game game,Canvas canvas){
         GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -159,5 +160,6 @@ public class GameScene extends Scene {
         makeKeysButtons(game,stage);
         game.generateNewQuestion();
         renderHearts(game,canvas);
+        System.out.println(game.getLivesRemaining());
     }
 }

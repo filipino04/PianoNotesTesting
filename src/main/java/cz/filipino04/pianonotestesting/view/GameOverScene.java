@@ -1,5 +1,6 @@
 package cz.filipino04.pianonotestesting.view;
 
+import cz.filipino04.pianonotestesting.model.Constants;
 import cz.filipino04.pianonotestesting.model.Game;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,17 +22,22 @@ public class GameOverScene extends Scene {
         root.getChildren().addAll(lostMessage,scoreMessage,newRecordMessage,playAgainButton);
         lostMessage.setTextAlignment(TextAlignment.CENTER);
         lostMessage.setFont(Font.font("Verdana", FontWeight.BOLD, 50));
-        lostMessage.setX(400);
-        lostMessage.setY(300);
+        lostMessage.setX(150);
+        lostMessage.setY(200);
+        scoreMessage.setX(150);
+        scoreMessage.setY(250);
         scoreMessage.setTextAlignment(TextAlignment.CENTER);
+        lostMessage.setTextAlignment(TextAlignment.CENTER);
         if (game.isNewRecordFlag()){
+            newRecordMessage.setX(150);
+            newRecordMessage.setY(300);
             newRecordMessage.setTextAlignment(TextAlignment.CENTER);
         }
 
         playAgainButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                stage.setScene(new MainMenuScene(stage,200,200));
+                stage.setScene(new MainMenuScene(stage, Constants.MenuWidth,Constants.MenuHeight));
             }
         });
     }
