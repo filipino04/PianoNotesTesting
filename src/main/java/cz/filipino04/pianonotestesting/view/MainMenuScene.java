@@ -5,19 +5,15 @@ import cz.filipino04.pianonotestesting.model.Game;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tooltip;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class MainMenuScene extends Scene {
 
-    private GameScene gameScene;
-    private Game game;
 
     final ComboBox<Integer> livesOptions = new ComboBox<>();
 

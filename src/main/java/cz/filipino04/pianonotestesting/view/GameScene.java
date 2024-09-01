@@ -66,6 +66,7 @@ public class GameScene extends Scene {
                         chooseAndShowAnimation(game,stage);
                         renderHearts(game,this.canvas);
                         game.generateNewQuestion();
+                        drawNoteImage(game);
                     }
                 });
             }
@@ -76,6 +77,7 @@ public class GameScene extends Scene {
                         chooseAndShowAnimation(game,stage);
                         renderHearts(game,this.canvas);
                         game.generateNewQuestion();
+                        drawNoteImage(game);
                     }
                 });
             }
@@ -140,6 +142,9 @@ public class GameScene extends Scene {
         }
         else{
             game.setNewRecordFlag(game.getPlayerScore() > game.getMaxScore());
+            if (game.isNewRecordFlag()){
+                game.writeNewRecordInFile();
+            }
             stage.setScene(new GameOverScene(stage,Constants.OverDim,Constants.OverDim,game));
         }
         renderHearts(game,canvas);
@@ -151,6 +156,20 @@ public class GameScene extends Scene {
             gc.drawImage(heartImage,50 * (i + 1),10);
         }
     }
+
+    public void drawNoteImage(Game game){
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.clearRect(300,300,2800,800);
+        String imageFileName;
+        if ((game.getCorrectAnswer().length() == 1 || game.getCorrectAnswer().length()==3) && game.isStringLowercase(game.getCorrectAnswer())){
+            imageFileName = game.getCorrectAnswer() + "'" + ".png";
+        }
+        else{
+            imageFileName = game.getCorrectAnswer() + ".png";
+        }
+        System.out.println(imageFileName);
+        gc.drawImage(new Image(imageFileName),300,300);
+    }
     public GameScene(Stage stage, double width, double height,Game game) {
         super(new Pane(), width, height);
         Pane pane = (Pane) getRoot();
@@ -161,5 +180,6 @@ public class GameScene extends Scene {
         game.generateNewQuestion();
         renderHearts(game,canvas);
         System.out.println(game.getLivesRemaining());
+        drawNoteImage(game);
     }
 }

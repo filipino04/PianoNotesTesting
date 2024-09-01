@@ -2,12 +2,17 @@ package cz.filipino04.pianonotestesting.model;
 
 import javafx.scene.shape.Rectangle;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Game {
 
-    private Random random = new Random();
+    private  final Random random = new Random();
     private int playerScore;
 
     private int livesRemaining;
@@ -38,15 +43,6 @@ public class Game {
         return 0;
     }
 
-    /*public String getEnharmonicEquivalent(String note) {
-        String newNote = note.substring(0,3);
-        String octave = note.substring(3);
-        String ret = Constants.enharmonicEquivavlents.get(newNote) + octave;
-        if (Character.isUpperCase(newNote.charAt(0))){
-            Character.toUpperCase(ret.charAt(0));
-        }
-        return ret;
-    }*/
 
     public void generateNewQuestion() {
         int blackOrWhite = random.nextInt(10);
@@ -125,6 +121,40 @@ public class Game {
 
     public void setNewRecordFlag(boolean newRecordFlag) {
         this.newRecordFlag = newRecordFlag;
+    }
+
+    public boolean isStringLowercase(String string){
+        for (int i = 0; i <string.length(); i++){
+            if (!Character.isLowerCase(string.charAt(i))){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void writeNewRecordInFile(){
+        String fileName = "/Users/filipchyska/Programování moje/PianoNotesTesting/PianoNotesTesting/src/main/resources/bestScore.txt";
+        try {
+            FileWriter fw = new FileWriter(fileName, false);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(String.valueOf(getPlayerScore()));
+            bw.close();
+        }
+        catch (IOException e){
+            System.err.println("ERROR while writing to file" + e.getMessage());
+        }
+    }
+
+    public Game() {
+        try {
+            File file = new File("/Users/filipchyska/Programování moje/PianoNotesTesting/PianoNotesTesting/src/main/resources/bestScore.txt");
+            Scanner scanner = new Scanner(file);
+            setMaxScore(scanner.nextInt());
+        }
+        catch (Exception e ){
+            System.out.println(e.getMessage());
+        }
+        System.out.println("High score is " +getMaxScore());
     }
 }
 
